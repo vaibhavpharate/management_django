@@ -40,3 +40,14 @@ def customer(request,pk):
     context = {'customer':customer,'orders':orders, 'total':total,
                'pending':pending,'delivered':delivered}
     return render(request,'accounts/customer.html',context)
+
+def update_order(request,pk):
+    order = Order.objects.get(id=pk)
+    form = OrderForm(instance=order)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    return render(request,'accounts/update_order.html',{'form':form})
