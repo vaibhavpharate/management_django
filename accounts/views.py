@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+
+
 from .models import Order, Customer
-from .forms_file import OrderForm
+from .forms_file import OrderForm, CreateUserForm
 
 ## Filters
 from .filters import OrderFilter
@@ -60,3 +62,18 @@ def update_order(request,pk):
 
     return render(request,'accounts/update_order.html',
                  {'form':form})
+
+def login(request):
+    context = {}
+    return render(request,'accounts/login.html')
+
+def register(request):
+    form = CreateUserForm()
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+    context = {'form':form}
+    return render(request,'accounts/register.html',context)
