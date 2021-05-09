@@ -7,6 +7,14 @@
     <div class="container-fluid">
         {# Stats #}
         {% include "accounts/stats.html" %}
+
+        <div class="py-2">
+          {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+              {{message}}
+            </div>
+          {% endfor %}
+        </div>
         <div class="row my-3">
             <div class="col-4">
               <div class="card">

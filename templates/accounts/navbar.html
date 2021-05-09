@@ -4,11 +4,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+    <div class="navbar-nav w-100">
       <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="#">Features</a>
       <a class="nav-link" href="#">Pricing</a>
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </div>
+      {% if request.user.username != "AnonymousUser" %}
+      <div class="ml-auto d-flex align-items-center">
+        <a href="{% url 'logout' %}"
+           class="btn btn-sm btn-outline-warning">Logout {{request.user}}</a>
+      </div>
+      {% endif %}
+
+      </div>
   </div>
 </nav>

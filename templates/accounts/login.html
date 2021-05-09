@@ -4,9 +4,39 @@
 {% endblock %}
 
 {% block content %}
-  <div class="min-vh-100 d-flex">
-    <div class="m-auto">
-
+  <div class="vh-100 d-flex">
+    <div class="col-5 m-auto">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Login Page</h3>
+          </div>
+          <div class="card-body">
+            <form  method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control"
+                id="username">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control"
+                id="password">
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-sm btn-primary">Login</button>
+              </div>
+              {% for message in messages %}
+                <p class="text-{{message.tags}}">{{message}}</p>
+              {% endfor %}
+            </form>
+          </div>
+          <div class="card-footer">
+            <p class="mb-0">
+              Don't have a account? <a href="register">Register Now</a>
+            </p>
+          </div>
+        </div>
     </div>
   </div>
 {% endblock %}
